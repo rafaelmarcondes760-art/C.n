@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dia da Consciência Negra - 20 de Novembro</title>
+    
+    <!-- Fontes Google Fonts: Cinzel e Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #120D0A;
+            --bg-card: #1E1611;
+            --bg-section: #17110D;
+            --gold: #E5A93B;
+            --gold-hover: #F5C056;
+            --terracotta: #C84B31;
+            --ochre: #D97724;
+            --text-light: #F7F3EE;
+            --text-muted: #C4B8AE;
+            --border-subtle: rgba(229, 169, 59, 0.25);
+            --font-display: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .african-pattern-bar {
+            height: 10px;
+            width: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--gold) 0px, var(--gold) 25px,
+                var(--terracotta) 25px, var(--terracotta) 50px,
+                var(--bg-dark) 50px, var(--bg-dark) 60px,
+                var(--ochre) 60px, var(--ochre) 85px
+            );
+        }
+
+        header {
+            background-color: rgba(18, 13, 10, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .logo span {
+            background-color: var(--terracotta);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.45rem 0.85rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--gold);
+            background: rgba(229, 169, 59, 0.1);
+            border-color: var(--border-subtle);
+        }
+
+        .page-view { display: none; animation: fadeInPage 0.5s ease forwards; }
+        .page-view.active { display: block; }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .hero {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            background: radial-gradient(circle at top right, rgba(200, 75, 49, 0.15), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(229, 169, 59, 0.1), transparent 50%);
+        }
+
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
+
+        .date-badge {
+            display: inline-block;
+            background-color: var(--terracotta);
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(200, 75, 49, 0.3);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            line-height: 1.15;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.2rem; text-align: justify; }
+
+        .hero-image-box {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-image-box img { width: 100%; height: 440px; object-fit: cover; display: block; transition: transform 0.6s ease; }
+        .hero-image-box:hover img { transform: scale(1.03); }
+
+        .image-caption {
+            background: linear-gradient(transparent, rgba(18, 13, 10, 0.95));
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 2rem 1.2rem 1rem; font-size: 0.85rem; color: var(--gold); font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="african-pattern-bar"></div>
+
+    <header>
+        <div class="nav-container">
+            <a class="logo" onclick="navigateTo('home')">
+                CONSCIÊNCIA NEGRA <span>20 NOV</span>
+            </a>
+            <nav class="nav-links" id="main-nav">
+                <button class="nav-btn active" data-target="home" onclick="navigateTo('home')">Início</button>
+                <button class="nav-btn" data-target="africanos" onclick="navigateTo('africanos')">Povos Africanos</button>
+                <button class="nav-btn" data-target="indigenas" onclick="navigateTo('indigenas')">Povos Indígenas</button>
+                <button class="nav-btn" data-target="congoleses" onclick="navigateTo('congoleses')">Povos Congoleses</button>
+                <button class="nav-btn" data-target="angolanos" onclick="navigateTo('angolanos')">Povos Angolanos</button>
+                <button class="nav-btn" data-target="mocambicanos" onclick="navigateTo('mocambicanos')">Povos Moçambicanos</button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="page-home" class="page-view active">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <span class="date-badge">20 de Novembro • Memória, Resistência e Luta</span>
+                    <h1>Dia da Consciência Negra</h1>
+                    <p>
+                        O <strong>Dia Nacional de Zumbi e da Consciência Negra</strong>, celebrado em 20 de novembro, é um marco fundamental de reflexão, memória histórica e mobilização social no Brasil. A data faz referência ao dia da morte de <strong>Zumbi dos Palmares</strong>, em 1695, uma das maiores lideranças do Quilombo dos Palmares e símbolo máximo da resistência negra contra o sistema escravista colonial.
+                    </p>
+                    <p>
+                        Instituída oficialmente pela Lei nº 12.519/2011 e tornada feriado nacional pela Lei nº 14.759/2023, a data vai muito além de uma efeméride no calendário: ela convida a sociedade brasileira a reconhecer as profundas marcas deixadas por mais de três séculos de escravidão e a combater o racismo estrutural que ainda persiste no país.
+                    </p>
+                    <p>
+                        É também um momento de celebrar e valorizar a imensa contribuição dos povos africanos e afrodescendentes na formação da identidade, da língua, da música, da religiosidade, da ciência e da cultura do Brasil.
+                    </p>
+                </div>
+                <div class="hero-image-box">
+                    <img src="https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?auto=format&fit=crop&w=900&q=80" alt="Representação da cultura, ancestralidade e força negra">
+                    <div class="image-caption">
+                        Ancestralidade, identidade e resistência: a herança viva dos povos que construíram o Brasil.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="peoples-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Raízes, Povos e Resistência</h2>
+                    <p>
+                        A história do Brasil foi forjada pelo encontro forçado, pela dor, mas sobretudo pela resistência e riqueza cultural de diversos povos. Explore os cinco eixos abaixo para compreender suas histórias, culturas e legados.
+                    </p>
+                </div>
+
+                <div class="cards-grid">
+                    <article class="people-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-tag">Continente Africano</span>
+                            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80" alt="Paisagem e cultura africana">
+                        </div>
+                        <div class="card-content">
+                            <h3>Povos Africanos</h3>
+                            <p>Um continente vasto e plural, berço da humanidade, composto por milhares de etnias, idiomas, reinos complexos e tradições espirituais que foram brutalmente atingidos pelo tráfico transatlântico.</p>
+                            <button class="btn-saiba-mais" onclick="navigateTo('africanos')">Saiba mais &rarr;</button>
+                        </div>
+                    </article>
+
+                    <article class="people-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-tag">Povos Originários</span>
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Floresta e ancestralidade indígena no Brasil">
+                        </div>
+                        <div class="card-content">
+                            <h3>Povos Indígenas</h3>
+                            <p>Habitantes originários do território brasileiro, detentores de saberes ancestrais e línguas diversas, que enfrentaram a invasão colonial, a escravização e lutam até hoje pela demarcação de suas terras.</p>
+                            <button class="btn-saiba-mais" onclick="navigateTo('indigenas')">Saiba mais &rarr;</button>
+                        </div>
+                    </article>
+
+                    <article class="people-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-tag">África Central</span>
+                            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=800&q=80" alt="Região do Rio Congo">
+                        </div>
+                        <div class="card-content">
+                            <h3>Povos Congoleses</h3>
+                            <p>Protagonistas do sofisticado Reino do Congo, com avançada metalurgia e organização política, que sofreram intensa desestruturação com o comércio atlântico e deixaram marcas profundas no Brasil.</p>
+                            <button class="btn-saiba-mais" onclick="navigateTo('congoleses')">Saiba mais &rarr;</button>
+                        </div>
+                    </article>
+
+                    <article class="people-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-tag">África Centro-Ocidental</span>
+                            <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80" alt="Cultura e território angolano">
+                        </div>
+                        <div class="card-content">
+                            <h3>Povos Angolanos</h3>
+                            <p>Formados por grupos como os Ambundos, Ovimbundos e Bakongos, constituíram o maior contingente de africanos trazidos à força para o Brasil, influenciando diretamente o português brasileiro e o samba.</p>
+                            <button class="btn-saiba-mais" onclick="navigateTo('angolanos')">Saiba mais &rarr;</button>
+                        </div>
+                    </article>
+
+                    <article class="people-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-tag">África Oriental</span>
+                            <img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?auto=format&fit=crop&w=800&q=80" alt="Costa e cultura de Moçambique">
+                        </div>
+                        <div class="card-content">
+                            <h3>Povos Moçambicanos</h3>
+                            <p>Povos como os Macuas, Tsongas e Senas, localizados na costa do Índico, que enfrentaram travessias marítimas ainda mais longas e severas rumo às Américas no século XIX.</p>
+                            <button class="btn-saiba-mais" onclick="navigateTo('mocambicanos')">Saiba mais &rarr;</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section id="page-africanos" class="page-view">
+        <div class="hero" style="padding: 3rem 0; background: var(--bg-section);">
+            <div class="container">
+                <button class="btn-saiba-mais" style="width: auto; margin-bottom: 2rem; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('home')">&larr; Voltar à Página Inicial</button>
+                <div class="hero-grid">
+                    <div>
+                        <span class="date-badge" style="background: var(--ochre);">Diversidade Continental</span>
+                        <h1 style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;">Povos Africanos</h1>
+                        <p style="color: var(--text-muted); font-size: 1.05rem;">A África não é um país, mas um continente imenso com 54 nações atuais e milhares de grupos étnicos, linguísticos e culturais que moldaram a história mundial.</p>
+                    </div>
+                    <div style="border-radius: 12px; overflow: hidden; border: 2px solid var(--gold);">
+                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=900&q=80" style="width: 100%; height: 260px; object-fit: cover; display: block;" alt="África">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="padding: 4rem 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resumo Histórico</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Antes da chegada dos colonizadores europeus, o continente africano abrigava impérios e reinos altamente organizados, como os Impérios do Mali, Gana, Songhai, Benin, Iorubá e o Grande Zimbábue. Possuíam rotas comerciais, centros universitários e domínio avançado da metalurgia e agricultura.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Cultura, Costumes e Idiomas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Mais de 2.000 idiomas são falados na África (troncos Níger-Congo, Afro-asiático, etc.). A espiritualidade valoriza a natureza e a ancestralidade, onde os anciãos e os griots (contadores de histórias) são os guardiões da memória coletiva.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">O Tráfico Transatlântico</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Entre os séculos XVI e XIX, cerca de 12,5 milhões de africanos foram sequestrados rumo às Américas. O Brasil recebeu quase 5 milhões — o maior contingente do continente americano — transformando seres humanos em mercadoria através de guerras fomentadas por europeus.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">Consequências Históricas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">O tráfico provocou um colapso demográfico e social em várias regiões africanas. No século XIX, a Partilha da África dividiu o continente de forma arbitrária pelas potências europeias, gerando conflitos cujos reflexos perduram.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--ochre); padding: 2rem; border-radius: 10px; grid-column: 1 / -1;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resistência e Preservação Cultural</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Os africanos reconstituíram laços no Brasil, preservando matrizes religiosas (Candomblé, Umbanda), técnicas agrícolas, criando irmandades, quilombos e revoltas urbanas como a Revolta dos Malês (1835).</p>
+                </div>
+            </div>
+            <div style="margin-top: 3rem; display: flex; justify-content: space-between;">
+                <button class="btn-saiba-mais" style="width: auto; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('home')">&larr; Voltar</button>
+                <button class="btn-saiba-mais" style="width: auto;" onclick="navigateTo('indigenas')">Próximo: Povos Indígenas &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-indigenas" class="page-view">
+        <div class="hero" style="padding: 3rem 0; background: var(--bg-section);">
+            <div class="container">
+                <button class="btn-saiba-mais" style="width: auto; margin-bottom: 2rem; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('home')">&larr; Voltar à Página Inicial</button>
+                <div class="hero-grid">
+                    <div>
+                        <span class="date-badge" style="background: var(--ochre);">Povos Originários</span>
+                        <h1 style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;">Povos Indígenas</h1>
+                        <p style="color: var(--text-muted); font-size: 1.05rem;">Antes de 1500, milhões de indígenas de centenas de etnias habitavam o território brasileiro, vivendo em harmonia e manejo sustentável com os biomas.</p>
+                    </div>
+                    <div style="border-radius: 12px; overflow: hidden; border: 2px solid var(--gold);">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=80" style="width: 100%; height: 260px; object-fit: cover; display: block;" alt="Indígenas">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="padding: 4rem 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resumo Histórico</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Em 1500, havia entre 3 e 5 milhões de indígenas divididos em mais de mil povos com redes de comércio, alianças e variadas formas de ocupação territorial desde o litoral até o interior.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Cultura, Costumes e Idiomas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Dividem-se em troncos como Tupi e Macro-Jê. Suas sociedades baseiam-se na coletividade, transmissão oral de saberes por anciãos e pajés, e na visão de que a terra é sagrada.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">Colonização e Escravização</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Foram os primeiros escravizados pelos portugueses para extração de pau-brasil e cana. Através das "Guerras Justas", milhares foram capturados e vendidos.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">Consequências Históricas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Epidemias de doenças europeias sem imunidade prévia, massacres e trabalho forçado dizimaram cerca de 90% da população nativa nos primeiros séculos, além do roubo de territórios.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--ochre); padding: 2rem; border-radius: 10px; grid-column: 1 / -1;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resistência e Preservação Cultural</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Resistem desde a invasão por meio de confederações e alianças com quilombos. Hoje, mais de 300 povos e 274 línguas resistem na defesa das florestas e direitos constitucionais.</p>
+                </div>
+            </div>
+            <div style="margin-top: 3rem; display: flex; justify-content: space-between;">
+                <button class="btn-saiba-mais" style="width: auto; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('africanos')">&larr; Anterior</button>
+                <button class="btn-saiba-mais" style="width: auto;" onclick="navigateTo('congoleses')">Próximo: Povos Congoleses &rarr;</button>
+            </div>
+        </div>
+    </section>
+    <section id="page-congoleses" class="page-view">
+        <div class="hero" style="padding: 3rem 0; background: var(--bg-section);">
+            <div class="container">
+                <button class="btn-saiba-mais" style="width: auto; margin-bottom: 2rem; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('home')">&larr; Voltar à Página Inicial</button>
+                <div class="hero-grid">
+                    <div>
+                        <span class="date-badge" style="background: var(--ochre);">África Central</span>
+                        <h1 style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;">Povos Congoleses</h1>
+                        <p style="color: var(--text-muted); font-size: 1.05rem;">Sede de um dos estados mais poderosos da África Central, o Reino do Congo estabeleceu relações diplomáticas com a Europa antes de ser devastado pelo tráfico.</p>
+                    </div>
+                    <div style="border-radius: 12px; overflow: hidden; border: 2px solid var(--gold);">
+                        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=900&q=80" style="width: 100%; height: 260px; object-fit: cover; display: block;" alt="Congo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="padding: 4rem 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resumo Histórico</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Fundado no século XIV na bacia do Rio Congo, o Reino do Congo era governado pelo Manicongo. Possuía administração centralizada, impostos, moeda própria (búzios nzimbu) e exército estruturado.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Cultura, Costumes e Idiomas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Etnia Bakongo e idioma Kikongo. Destacavam-se na tecelagem de ráfia, escultura e metalurgia. A cosmologia baseia-se no Dikenga, simbolizando o ciclo contínuo da vida e ancestralidade.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">Escravização e Colonização</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">No fim do século XV, portugueses chegaram ao Congo. A demanda por mão de obra no Brasil fez Portugal intensificar o tráfico, fomentando guerras internas e traficando até súditos do reino.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">Consequências Históricas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">O tráfico enfraqueceu o Manicongo e fragmentou o reino. Milhares foram embarcados rumo ao Rio, Bahia e Pernambuco, separando famílias e destruindo estruturas sociais.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--ochre); padding: 2rem; border-radius: 10px; grid-column: 1 / -1;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resistência e Legado no Brasil</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Recriaram tradições através das Congadas e Reisados. No RJ e em MG, o Jongo e o Caxambu preservam diretamente o ritmo, a dança em roda e o vocabulário Kikongo.</p>
+                </div>
+            </div>
+            <div style="margin-top: 3rem; display: flex; justify-content: space-between;">
+                <button class="btn-saiba-mais" style="width: auto; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('indigenas')">&larr; Anterior</button>
+                <button class="btn-saiba-mais" style="width: auto;" onclick="navigateTo('angolanos')">Próximo: Povos Angolanos &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-angolanos" class="page-view">
+        <div class="hero" style="padding: 3rem 0; background: var(--bg-section);">
+            <div class="container">
+                <button class="btn-saiba-mais" style="width: auto; margin-bottom: 2rem; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('home')">&larr; Voltar à Página Inicial</button>
+                <div class="hero-grid">
+                    <div>
+                        <span class="date-badge" style="background: var(--ochre);">África Centro-Ocidental</span>
+                        <h1 style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;">Povos Angolanos</h1>
+                        <p style="color: var(--text-muted); font-size: 1.05rem;">A região de Angola foi o principal ponto de embarque de africanos escravizados para o Brasil, deixando uma marca indelével na língua e na cultura.</p>
+                    </div>
+                    <div style="border-radius: 12px; overflow: hidden; border: 2px solid var(--gold);">
+                        <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=900&q=80" style="width: 100%; height: 260px; object-fit: cover; display: block;" alt="Angola">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="padding: 4rem 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resumo Histórico</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">O território abrigava estados como o Reino do Ndongo (governado pelo Ngola) e Matamba, palco de intensos conflitos contra a ocupação militar portuguesa em Luanda desde 1575.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Diversidade Étnica e Idiomas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Ambundos (Kimbundu), Ovimbundos (Umbundu) e Bakongos. Valorizam a música percussiva, danças como a semba, culinária com dendê e o culto aos ancestrais.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">Epicentro do Tráfico</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Luanda e Benguela foram os maiores centros exportadores. Cerca de 70% dos africanos trazidos ao Brasil vieram daqui, abastecendo engenhos, minas de ouro e fazendas de café.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">Consequências Históricas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Incursões sistemáticas para capturar prisioneiros provocaram despovoamento e destruição de reinos, seguidos de longa dominação colonial até 1975.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--ochre); padding: 2rem; border-radius: 10px; grid-column: 1 / -1;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resistência e Influência no Brasil</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Rainha Nzinga resistiu por 40 anos. O Quilombo dos Palmares (Angola Janga) inspirou-se em modelos centro-africanos. Capoeira Angola, Samba e palavras (cafuné, moleque, quitanda) vêm do Kimbundu e Umbundu.</p>
+                </div>
+            </div>
+            <div style="margin-top: 3rem; display: flex; justify-content: space-between;">
+                <button class="btn-saiba-mais" style="width: auto; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('congoleses')">&larr; Anterior</button>
+                <button class="btn-saiba-mais" style="width: auto;" onclick="navigateTo('mocambicanos')">Próximo: Povos Moçambicanos &rarr;</button>
+            </div>
+        </div>
+    </section>
+    <section id="page-mocambicanos" class="page-view">
+        <div class="hero" style="padding: 3rem 0; background: var(--bg-section);">
+            <div class="container">
+                <button class="btn-saiba-mais" style="width: auto; margin-bottom: 2rem; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('home')">&larr; Voltar à Página Inicial</button>
+                <div class="hero-grid">
+                    <div>
+                        <span class="date-badge" style="background: var(--ochre);">África Oriental</span>
+                        <h1 style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;">Povos Moçambicanos</h1>
+                        <p style="color: var(--text-muted); font-size: 1.05rem;">Localizados na costa oriental da África, os povos de Moçambique enfrentaram as travessias marítimas mais longas e mortais rumo ao Brasil.</p>
+                    </div>
+                    <div style="border-radius: 12px; overflow: hidden; border: 2px solid var(--gold);">
+                        <img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?auto=format&fit=crop&w=900&q=80" style="width: 100%; height: 260px; object-fit: cover; display: block;" alt="Moçambique">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="padding: 4rem 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resumo Histórico</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Banhado pelo Índico, integrou redes comerciais com árabes e asiáticos e abrigou partes do Império Monomotapa. Portugueses estabeleceram feitorias no século XVI.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--gold); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Diversidade Étnica e Idiomas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Macuas (ao norte, matriarcais), Tsongas (ao sul) e Senas (vale do Zambeze). Possuem tradições como o Timbila (xilofone patrimônio da humanidade) e o Tufo.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">A Rota do Índico</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Com restrições ao tráfico na África Ocidental no século XIX, moçambicanos foram embarcados na Ilha de Moçambique e Quelimane, contornando o Cabo da Boa Esperança.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--terracotta); padding: 2rem; border-radius: 10px;">
+                    <h3 style="font-family: var(--font-display); color: #E86A50; margin-bottom: 1rem;">Consequências Históricas</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">A viagem durava até três meses, triplicando o tempo das rotas de Angola, gerando alta mortalidade. A exploração colonial seguiu com o trabalho forçado até 1975.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--ochre); padding: 2rem; border-radius: 10px; grid-column: 1 / -1;">
+                    <h3 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 1rem;">Resistência e Preservação Cultural</h3>
+                    <p style="color: var(--text-muted); text-align: justify;">Líderes como Ngungunhane resistiram ao domínio português. No Brasil, deram origem à dança dramática e cortejo religioso do Moçambique em MG, SP e GO.</p>
+                </div>
+            </div>
+            <div style="margin-top: 3rem; display: flex; justify-content: space-between;">
+                <button class="btn-saiba-mais" style="width: auto; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="navigateTo('angolanos')">&larr; Anterior</button>
+                <button class="btn-saiba-mais" style="width: auto;" onclick="navigateTo('africanos')">Voltar ao 1º Povo &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>20 de Novembro — Dia Nacional de Zumbi e da Consciência Negra</strong></p>
+            <p style="margin-top: 0.4rem;">Projeto Educativo sobre História, Memória, Diversidade e Resistência Afro-Brasileira e Indígena.</p>
+        </div>
+    </footer>
+
+    <script>
+        function navigateTo(pageId) {
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => page.classList.remove('active'));
+
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) targetPage.classList.add('active');
+
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                if (btn.getAttribute('data-target') === pageId) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
